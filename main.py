@@ -2,7 +2,6 @@ import sys
 from datetime import datetime
 
 from PyQt6.QtCore import Qt, QDateTime, QRect
-import PySide6.QtGui
 from PyQt6.QtWidgets import *
 
 
@@ -182,8 +181,8 @@ color:rgb(113, 126, 149);
 '''
 
 app = QApplication(sys.argv)
-app.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
-app.setStyleSheet(StyleSheet)
+# app.setFont(QtGui.QFont("Times", 10, QtGui.QFont.Bold))
+# app.setStyleSheet(StyleSheet)
 window = MainWindow()
 window.show()
 
