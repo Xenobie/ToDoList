@@ -20,11 +20,17 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>260</x>
+      <x>310</x>
       <y>20</y>
-      <width>271</width>
-      <height>41</height>
+      <width>211</width>
+      <height>71</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Agency FB</family>
+      <pointsize>-1</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true">font-size: 50px;
@@ -34,8 +40,45 @@ color: white;</string>
      <string>Your ToDo`s</string>
     </property>
    </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>110</y>
+      <width>711</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(70, 69, 68)</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>560</y>
+      <width>151</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: white;
+background-color: rgb(70, 69, 68);
+</string>
+    </property>
+    <property name="text">
+     <string>ADD</string>
+    </property>
+    <property name="icon">
+     <iconset resource="res_rc.qrc">
+      <normaloff>:/icons/icons/add.svg</normaloff>:/icons/icons/add.svg</iconset>
+    </property>
+   </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="res_rc.qrc"/>
+ </resources>
  <connections/>
 </ui>
