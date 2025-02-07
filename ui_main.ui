@@ -1,80 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>ToDoApp</class>
+ <widget class="QMainWindow" name="ToDoApp">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>843</width>
-    <height>624</height>
+    <width>778</width>
+    <height>521</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>ToDoApp</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: rgb(10, 10, 10);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>20</y>
-      <width>211</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Agency FB</family>
-      <pointsize>-1</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">font-size: 50px;
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <family>Agency FB</family>
+        <pointsize>-1</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font-size: 50px;
 color: white;</string>
-    </property>
-    <property name="text">
-     <string>Your ToDo`s</string>
-    </property>
-   </widget>
-   <widget class="QTableView" name="tableView">
-    <property name="geometry">
-     <rect>
-      <x>70</x>
-      <y>110</y>
-      <width>711</width>
-      <height>411</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(70, 69, 68)</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>560</y>
-      <width>151</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: white;
-background-color: rgb(70, 69, 68);
+      </property>
+      <property name="text">
+       <string>Your ToDo`s</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="lineEdit"/>
+    </item>
+    <item>
+     <widget class="QTableView" name="tableView">
+      <property name="styleSheet">
+       <string notr="true">QTableView{
+background-color: rgba(255, 255, 255, 30);
+border: 1px solid rgba(255, 255, 255, 40);
+border-radius: 7px;
+}
+
+QTableView::section{
+background-color: rgb(59, 59, 59);
+border: none;
+color: white;
+height: 50px;
+font-size: 14pt;
+}
+
+QTableView::item{
+border-style: none;
+border-bottom: rgba(255, 255, 255, 50);
+}
+
+QtableView::item:select{
+border: none;
+color: rgba(255, 255, 255);
+background-color: rgba(255, 255, 255, 50);
+}</string>
+      </property>
+      <property name="showGrid">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="pushButton">
+      <property name="styleSheet">
+       <string notr="true">QPushButton{color: white;
+background-color: rgba(255, 255, 255, 30);
+border: 1px solid rgba(255, 255, 255, 40);
+border-radius: 7px;
+}
+
+QPushButton::hover{
+background-color: rgba(255, 255, 255, 40);
+}
 </string>
-    </property>
-    <property name="text">
-     <string>ADD</string>
-    </property>
-    <property name="icon">
-     <iconset resource="res_rc.qrc">
-      <normaloff>:/icons/icons/add.svg</normaloff>:/icons/icons/add.svg</iconset>
-    </property>
-   </widget>
+      </property>
+      <property name="text">
+       <string>ADD</string>
+      </property>
+      <property name="icon">
+       <iconset resource="res_rc.qrc">
+        <normaloff>:/icons/icons/add.svg</normaloff>:/icons/icons/add.svg</iconset>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources>
