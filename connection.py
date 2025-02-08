@@ -42,3 +42,6 @@ class Data:
         sql_query = "DELETE FROM todos WHERE ID=?"
         self.execute_query_with_params(sql_query, [id])
 
+    def get_smth_todo_query(self, id):
+        sql_query = "SELECT `Title` FROM todo WHERE ID=?"
+        return str(self.execute_query_with_params(sql_query, [id]))

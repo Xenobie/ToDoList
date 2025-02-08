@@ -18,6 +18,7 @@ class MainWindow(QMainWindow):
 
         self.ui.btn_add_todo.clicked.connect(self.open_new_todo_window)
         self.ui.btn_edit_todo.clicked.connect(self.open_new_todo_window)
+        self.ui.btn_edit_todo.clicked.connect(self.edit_change_todo_text)
         self.ui.btn_delete_todo.clicked.connect(self.delete_current_todo)
 
     def view_data(self):
@@ -65,6 +66,11 @@ class MainWindow(QMainWindow):
         self.view_data()
         self.conn.delete_todo_query(id)
 
+    def edit_change_todo_text(self):
+        index = self.ui.tableView.selectedIndexes()[0]
+        id = str(self.ui.tableView.model().data(index))
+        print(self.conn.get_smth_todo_query(id))
+        self.ui_window.lineEdit.setText(self.conn.get_smth_todo_query(id))
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
