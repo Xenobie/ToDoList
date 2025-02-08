@@ -24,7 +24,7 @@ class Ui_Dialog(object):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(400, 300)
-        Dialog.setStyleSheet(u"background-color: rgba(59, 59, 59);")
+        Dialog.setStyleSheet(u"background-color: rgb(10, 10, 10);")
         self.verticalLayout_2 = QVBoxLayout(Dialog)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.frame = QFrame(Dialog)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>778</width>
-    <height>521</height>
+    <width>856</width>
+    <height>590</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -39,9 +39,6 @@ color: white;</string>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit"/>
-    </item>
-    <item>
      <widget class="QTableView" name="tableView">
       <property name="styleSheet">
        <string notr="true">QTableView{
@@ -69,13 +66,22 @@ color: rgba(255, 255, 255);
 background-color: rgba(255, 255, 255, 50);
 }</string>
       </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+      </property>
+      <property name="horizontalScrollBarPolicy">
+       <enum>Qt::ScrollBarPolicy::ScrollBarAlwaysOff</enum>
+      </property>
       <property name="showGrid">
        <bool>false</bool>
       </property>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>135</number>
+      </attribute>
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="btn_add_todo">
       <property name="styleSheet">
        <string notr="true">QPushButton{color: white;
 background-color: rgba(255, 255, 255, 30);
@@ -89,11 +95,57 @@ background-color: rgba(255, 255, 255, 40);
 </string>
       </property>
       <property name="text">
-       <string>ADD</string>
+       <string>Add</string>
       </property>
       <property name="icon">
        <iconset resource="res_rc.qrc">
         <normaloff>:/icons/icons/add.svg</normaloff>:/icons/icons/add.svg</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_edit_todo">
+      <property name="styleSheet">
+       <string notr="true">QPushButton{color: white;
+background-color: rgba(255, 255, 255, 30);
+border: 1px solid rgba(255, 255, 255, 40);
+border-radius: 7px;
+}
+
+QPushButton::hover{
+background-color: rgba(255, 255, 255, 40);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Edit</string>
+      </property>
+      <property name="icon">
+       <iconset resource="res_rc.qrc">
+        <normaloff>:/icons/icons/edit.svg</normaloff>:/icons/icons/edit.svg</iconset>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="btn_delete_todo">
+      <property name="styleSheet">
+       <string notr="true">QPushButton{color: white;
+background-color: rgba(255, 255, 255, 30);
+border: 1px solid rgba(255, 255, 255, 40);
+border-radius: 7px;
+}
+
+QPushButton::hover{
+background-color: rgba(255, 255, 255, 40);
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Delete</string>
+      </property>
+      <property name="icon">
+       <iconset resource="res_rc.qrc">
+        <normaloff>:/icons/icons/delete.svg</normaloff>:/icons/icons/delete.svg</iconset>
       </property>
      </widget>
     </item>
