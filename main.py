@@ -10,16 +10,6 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.enums.parse_mode import ParseMode
 
-API_TOKEN = '7631067443:AAFn13qh1KQFDUjP3Zk5h_6HujgWLlzovFw'
-CHAT_ID = '963156876'  # Идентификатор чата, куда будут отправляться сообщения
-
-# Создаём бота и диспетчер
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher()
-
-todos_time = []
-
-
 
 # Подкласс QMainWindow для настройки основного окна приложения
 class MainWindow(QMainWindow):
@@ -85,41 +75,11 @@ class MainWindow(QMainWindow):
         id = str(self.ui.tableView.model().data(index))
         self.ui_window.lineEdit.setText(self.conn.get_smth_todo_query(1, id))
         self.ui_window.lineEdit_2.setText(self.conn.get_smth_todo_query(2, id))
-        self.ui_window.dateTimeEdit.setDateTime(QDateTime.fromString(self.conn.get_smth_todo_query(3, id), "M/d/yy h:mm A"))
+        self.ui_window.dateTimeEdit.setDateTime(QDateTime.fromString(self.conn.get_smth_todo_query(3, id), "dd.MM.yyyy HH:mm"))
 
-
-
-
-async def send_message():
-    # Функция для отправки сообщения
-    await bot.send_message(CHAT_ID, "Наступило нужное время!")
-
-
-async def check_time_and_send():
-    while True:
-        current_time = QDateTime.currentDateTime()
-        if current_time:
-            await send_message()  # Отправляем сообщение в Telegram
-            await asyncio.sleep(60)  # Ждём 60 секунд, чтобы не отправлять несколько сообщений за раз
-        await asyncio.sleep(1)  # Периодически проверяем время
-
-
-async def main():
-    # Запуск бота в фоновом режиме
-    bot_task = asyncio.create_task(dp.start_polling())
-
-    # Запуск проверки времени
-    time_task = asyncio.create_task(check_time_and_send())
-
-    # Ожидание обоих процессов
-    await asyncio.gather(bot_task, time_task)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
     window.show()
-    for i in [QDateTime.fromString(j, "M/d/yy h:mm A") for j in window.conn.get_smth_all_todo_query(3)]:
-        todos_time.append(i)
-    print(todos_time)
     sys.exit(app.exec())
-    asyncio.run(main)

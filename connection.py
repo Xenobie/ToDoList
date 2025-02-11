@@ -55,13 +55,13 @@ class Data:
             return None
 
     def get_smth_all_todo_query(self, smth):
-        sql_query = "SELECT * FROM todos"
-        query = self.execute_query_with_params(sql_query, [id])
+        sql_query = "SELECT ? FROM todos"
+        query = self.execute_query_with_params(sql_query, [smth])
 
         # Проверяем, был ли найден хотя бы один результат
         if query.next():
             # Получаем значение из первой колонки (Title)
-            return query.value(smth)  # Возвращает значение из первого столбца
+            return query.value(0)  # Возвращает значение из первого столбца
         else:
             # Если запись не найдена, можно вернуть None или пустое значение
             return None
