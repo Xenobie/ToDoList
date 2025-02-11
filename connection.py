@@ -42,6 +42,26 @@ class Data:
         sql_query = "DELETE FROM todos WHERE ID=?"
         self.execute_query_with_params(sql_query, [id])
 
-    def get_smth_todo_query(self, id):
-        sql_query = "SELECT `Title` FROM todo WHERE ID=?"
-        return str(self.execute_query_with_params(sql_query, [id]))
+    def get_smth_todo_query(self, smth, id):
+        sql_query = "SELECT * FROM todos WHERE ID=?"
+        query = self.execute_query_with_params(sql_query, [id])
+
+        # Проверяем, был ли найден хотя бы один результат
+        if query.next():
+            # Получаем значение из первой колонки (Title)
+            return query.value(smth)  # Возвращает значение из первого столбца
+        else:
+            # Если запись не найдена, можно вернуть None или пустое значение
+            return None
+
+    def get_smth_all_todo_query(self, smth):
+        sql_query = "SELECT * FROM todos"
+        query = self.execute_query_with_params(sql_query, [id])
+
+        # Проверяем, был ли найден хотя бы один результат
+        if query.next():
+            # Получаем значение из первой колонки (Title)
+            return query.value(smth)  # Возвращает значение из первого столбца
+        else:
+            # Если запись не найдена, можно вернуть None или пустое значение
+            return None
