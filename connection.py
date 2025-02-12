@@ -7,7 +7,7 @@ class Data:
 
     def create_connection(self):
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
-        db.setDatabaseName('todos.db')
+        db.setDatabaseName('todos_db.db')
 
         if not db.open():
             QtWidgets.QMessageBox.critical(None, "Cannot open db",
@@ -54,14 +54,13 @@ class Data:
             # Если запись не найдена, можно вернуть None или пустое значение
             return None
 
-    def get_smth_all_todo_query(self, smth):
-        sql_query = "SELECT ? FROM todos"
-        query = self.execute_query_with_params(sql_query, [smth])
+    def get_id_todo_query(self):
+        sql_query = "SELECT ID FROM todos"
+        query = self.execute_query_with_params(sql_query, [])
 
         # Проверяем, был ли найден хотя бы один результат
-        if query.next():
-            # Получаем значение из первой колонки (Title)
-            return query.value(0)  # Возвращает значение из первого столбца
-        else:
-            # Если запись не найдена, можно вернуть None или пустое значение
-            return None
+        column_data = []
+        while query.next():
+            column_data.append(query.value(0))  # Получаем значение из первого столбца запроса
+
+        return column_data

@@ -14,9 +14,11 @@ CHAT_ID = '963156876'
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()
 
+
 async def check_time_loop():
+    tasks_ids = window.conn.get_id_todo_query()
     while True:
-        for i in window.conn.get_smth_all_todo_query(0):
+        for i in tasks_ids:
             query_result = window.conn.get_smth_todo_query(3, i)
             query_title_result = window.conn.get_smth_todo_query(1, i)
 
@@ -35,6 +37,7 @@ async def check_time_loop():
             current_time = QDateTime.currentDateTime()
             if current_time >= target_time:
                 await bot.send_message(CHAT_ID, f"Наступило нужное время! Для задачи {query_title_result}")
+                tasks_ids.remove(i)
                 break
             await asyncio.sleep(1)
 
