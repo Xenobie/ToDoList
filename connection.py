@@ -1,4 +1,6 @@
 from PySide6 import QtWidgets, QtSql
+from PySide6.QtSql import QSqlDatabase
+print(QSqlDatabase.drivers())  # Это выведет список доступных драйверов
 
 class Data:
     def __init__(self):
@@ -60,6 +62,9 @@ class Data:
 
         # Проверяем, был ли найден хотя бы один результат
         column_data = []
+        if not query.isActive():
+            print("❌ SQL-запрос не выполнен!")
+            print(f"❌ Ошибка SQL: {query.lastError().text()}")
         while query.next():
             column_data.append(query.value(0))  # Получаем значение из первого столбца запроса
 
