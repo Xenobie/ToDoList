@@ -91,8 +91,8 @@ dp = Dispatcher()
 
 async def check_time_loop():
     logging.debug("Фоновый процесс запущен!")
-    tasks_ids = window.conn.get_id_todo_query()
     while True:
+        tasks_ids = window.conn.get_id_todo_query()
         logging.debug(f"Получены ID задач: {tasks_ids}")
 
         for i in tasks_ids:
