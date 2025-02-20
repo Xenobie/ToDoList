@@ -132,6 +132,7 @@ class BotThread(QThread):
         self.loop = None
 
     def run(self):
+        
         logging.info("Запуск потока бота...")
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
