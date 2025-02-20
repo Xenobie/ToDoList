@@ -10,9 +10,6 @@ from new_todo import Ui_Dialog
 from connection import Data
 from aiogram import Bot, Dispatcher
 
-# Настройка логирования
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
-
 # Подкласс QMainWindow для настройки основного окна приложения
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -79,70 +76,9 @@ class MainWindow(QMainWindow):
         self.ui_window.lineEdit_2.setText(self.conn.get_smth_todo_query(2, id))
         self.ui_window.dateTimeEdit.setDateTime(QDateTime.fromString(self.conn.get_smth_todo_query(3, id), "dd.MM.yyyy HH:mm"))
 
-app = QApplication(sys.argv)
-window = MainWindow()
-
-# ----------- TELEГРАМ БОТ ----------- #
-API_TOKEN = '7631067443:AAFn13qh1KQFDUjP3Zk5h_6HujgWLlzovFw'
-CHAT_ID = '963156876'
-
-bot = Bot(token=API_TOKEN)
-dp = Dispatcher()
-
-async def check_time_loop():
-    logging.debug("Фоновый процесс запущен!")
-    tasks_ids = window.conn.get_id_todo_query()
-    while True:
-        logging.debug(f"Получены ID задач: {tasks_ids}")
-
-        for i in tasks_ids:
-            query_result = window.conn.get_smth_todo_query(3, i)
-            query_title_result = window.conn.get_smth_todo_query(1, i)
-
-            if query_result is None:
-                logging.warning("Ошибка: база данных вернула None!")
-                await asyncio.sleep(10)
-                continue
-
-            target_time = QDateTime.fromString(query_result, "dd.MM.yyyy HH:mm")
-
-            if not target_time.isValid():
-                logging.warning(f"Ошибка: не удалось распознать дату из '{query_result}'")
-                target_time = QDateTime.fromString(query_result, "M/d/yy h:mm A")
-                await asyncio.sleep(10)
-
-            current_time = QDateTime.currentDateTime()
-            logging.debug(f"Текущая дата: {current_time}, задача: {query_title_result}, запланировано: {target_time}")
-
-            if current_time >= target_time:
-                logging.info(f"Отправка уведомления: {query_title_result}")
-                await bot.send_message(CHAT_ID, f"Наступило нужное время! Для задачи {query_title_result}")
-                tasks_ids.remove(i)
-                break
-        await asyncio.sleep(1)
-
-async def mainBot():
-    logging.info("Запуск бота и проверки времени...")
-    asyncio.create_task(check_time_loop())  # Запускаем проверку времени в фоне
-    await dp.start_polling(bot)  # Используем start_polling вместо run_polling
-
-class BotThread(QThread):
-    def __init__(self):
-        super().__init__()
-        self.loop = None
-
-    def run(self):
-        
-        logging.info("Запуск потока бота...")
-        self.loop = asyncio.new_event_loop()
-        asyncio.set_event_loop(self.loop)
-        self.loop.run_until_complete(mainBot())
-
 if __name__ == "__main__":
-    logging.info("Запуск GUI...")
+    app = QApplication(sys.argv)
+    window = MainWindow()
     window.show()
-
-    bot_thread = BotThread()
-    bot_thread.start()  # Запускаем поток с ботом
 
     sys.exit(app.exec())
