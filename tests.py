@@ -48,6 +48,6 @@ async def mainBot():
         await asyncio.create_task(check_time_loop())
     finally:
         await bot.session.close()
-async def start_bot():
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(mainBot())
+loop = asyncio.get_event_loop()
+loop.run_until_complete(mainBot())
+

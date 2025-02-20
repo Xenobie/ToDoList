@@ -1,6 +1,4 @@
 import sys
-import asyncio
-import logging
 from PySide6 import QtWidgets
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtSql import QSqlTableModel
@@ -8,9 +6,8 @@ from PySide6.QtCore import QDateTime, QThread
 from ui_main import Ui_ToDoApp
 from new_todo import Ui_Dialog
 from connection import Data
-from aiogram import Bot, Dispatcher
 
-# Подкласс QMainWindow для настройки основного окна приложения
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
