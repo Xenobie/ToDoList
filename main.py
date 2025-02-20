@@ -71,7 +71,11 @@ class MainWindow(QMainWindow):
         id = str(self.ui.tableView.model().data(index))
         self.ui_window.lineEdit.setText(self.conn.get_smth_todo_query(1, id))
         self.ui_window.lineEdit_2.setText(self.conn.get_smth_todo_query(2, id))
-        self.ui_window.dateTimeEdit.setDateTime(QDateTime.fromString(self.conn.get_smth_todo_query(3, id), "dd.MM.yyyy HH:mm"))
+        date = QDateTime.fromString(self.conn.get_smth_todo_query(3, id), "dd.MM.yyyy HH:mm")
+        if not date.isValid():
+            self.ui_window.dateTimeEdit.setDateTime(QDateTime.fromString(self.conn.get_smth_todo_query(3, id), "M/d/yy h:mm A"))
+        else:
+            self.ui_window.dateTimeEdit.setDateTime(QDateTime.fromString(date))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
